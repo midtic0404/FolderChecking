@@ -41,8 +41,5 @@ def runFolder(path, docType):
         
 #To main interface of the program
 while userInput != 'q':
-        selectFolder('Z:\HS Transcripts\To be scanned')
-        selectFolder('Z:\Records Scan Docs\To be scanned\BSID - Grade Change')
-        selectFolder('Z:\Records Scan Docs\To be scanned\BSID - Registration Emails')
-        selectFolder('Z:\Records Scan Docs\To be scanned\BSID - Transcript Info')
+        selectFolder(PATH HERE)
         userInput = input('Press enter to refresh, q to quit: ')
