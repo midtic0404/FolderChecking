@@ -1,25 +1,41 @@
+#Folder Checking Program
+#
+#Ther Purpose of this program is to go through certain
+#folders inside school's share drive and print out the file names
+#that needed to be processed.
+#
+#Updated 2/7/2018
+#Version 1.1
+#Written By Chia Che Chang
 import os
-userInput = ''
+import time
 
+fileTypes = ['pdf', 'jpg', 'img'] #List with potential file types
 
 def selectFolder(path):
-        if 'HS' in path:
-                docType = 'High School'
-        elif 'Grade Change' in path:
-                docType = 'Grade Change'
-        elif 'Registration Emails' in path:
-                docType = 'Registration Email'
-        elif 'Transcript Info' in path:
-                docType = 'Transcript Info'
+        if(os.path.exists(path)):
+                if 'HS' in path:
+                        docType = 'High School'
+                elif 'Grade Change' in path:
+                        docType = 'Grade Change'
+                elif 'Registration Emails' in path:
+                        docType = 'Registration Email'
+                elif 'Transcript Info' in path:
+                        docType = 'Transcript Info'
 
-        #Check if it is Registration folder
-        if docType == 'Registration Email':
-                for smallFolder in os.listdir(path)[0:3]:
-                        newPath = os.path.join(path,smallFolder)
-                        docType = 'Registration Emails ' + smallFolder
-                        runFolder(newPath, docType)
+                #Check if it is Registration folder
+                if docType == 'Registration Email':
+                        for smallFolder in os.listdir(path)[0:3]:
+                                newPath = os.path.join(path,smallFolder)
+                                docType = 'Registration Emails ' + smallFolder
+                                runFolder(newPath, docType)
+                else:
+                        runFolder(path,docType)
         else:
-                runFolder(path,docType)
+                print("Error! Folder path cannot be accessed")
+                print("Program will close in 10 seconds")
+                time.sleep(10)
+                exit(1)
 
 
 #The running part, taking the docType and the path
@@ -30,7 +46,7 @@ def runFolder(path, docType):
         print("*"*5)
         for filename in os.listdir(path):
                 if os.path.isfile(os.path.join(path,filename)):
-                    if filename.endswith('.pdf') or filename.endswith('.jpg') :
+                    if filename[-3:].lower() in fileTypes:
                         docCount += 1
                         print(filename)
         print('*'*5, end='')
@@ -40,6 +56,8 @@ def runFolder(path, docType):
 
         
 #To main interface of the program
-while userInput != 'q':
-        selectFolder(PATH HERE)
-        userInput = input('Press enter to refresh, q to quit: ')
+while True:
+        print('='*80)
+        selectFolder('PATH HERE')
+        time.sleep(60)
+        
