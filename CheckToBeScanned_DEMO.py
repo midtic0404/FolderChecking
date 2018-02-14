@@ -4,13 +4,13 @@
 #folders inside school's share drive and print out the file names
 #that needed to be processed.
 #
-#Updated 2/7/2018
-#Version 1.1
+#Updated 2/14/2018
+#Version 1.2
 #Written By Chia Che Chang
 import os
 import time
 
-fileTypes = ['pdf', 'jpg', 'img'] #List with potential file types
+fileTypes = ['pdf', 'jpg', 'img', 'tif'] #List with potential file types
 
 def selectFolder(path):
         if(os.path.exists(path)):
